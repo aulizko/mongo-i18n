@@ -20,7 +20,7 @@ At rails' 3 gemfile:
 
 == Usage with Rails 3
 
-  connection = Mongo::Connection.new['my_app_related_db'].collection('i18n')
+  collection = Mongo::Connection.new['my_app_related_db'].collection('i18n')
   I18n.backend = I18n::Backend::KeyValue.new(MongoI18n::Store.new(collection))
 
 Or if you already use mongodb in your app, say, via MongoMapper[https://github.com/jnunemaker/mongomapper] I recommend to reuse already existed connection. 
