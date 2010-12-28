@@ -20,11 +20,19 @@ At rails' 3 gemfile:
 
 == Usage with Rails 3
 
-  collection = Mongo::Connection.new['my_app_related_db'].collection('i18n')
-  I18n.backend = I18n::Backend::KeyValue.new(MongoI18n::Store.new(collection))
+I recommend to start with Chain[https://github.com/svenfuchs/i18n/blob/master/lib/i18n/backend/chain.rb] backend while mongodb collection is empty, and move to entirely mongodb-based backend when you populate your database with all I18n messages.
 
-Or if you already use mongodb in your app, say, via MongoMapper[https://github.com/jnunemaker/mongomapper] I recommend to reuse already existed connection. 
-Like this (assume that MongoMapper version is 0.8.6 and it is already initialized):
+Begin with: 
+
+  collection = Mongo::Connection.new['my_app_related_db'].collection('i18n')
+  I18n.backend = I18n::Backend::Chain.new(I18n::Backend::KeyValue.new(MongoI18n::Store.new(collection)), I18n.backend)
+
+And finish with:
+
+  collection = Mongo::Connection.new['my_app_related_db'].collection('i18n')
+  I18n.backend = I18n::Backend::KeyValue.new(MongoI18n::Store.new(collection)
+
+If you are already using a mongodb ORM in your project (and I suppose you are, why else would you be reading this article? :), I recommend using the existing database connection:
 
   collection = MongoMapper.database.collection('i18n')
   I18n.backend = I18n::Backend::KeyValue.new(MongoI18n::Store.new(collection))
