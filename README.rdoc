@@ -8,6 +8,16 @@ MongoDB backend implementation for I18n gem.
 * I18n 0.5.0
 * Rails 3.0.3
 
+== Installation
+
+From command line:
+
+  gem install mongo-i18n
+  
+At rails' 3 gemfile:
+
+  gem 'mongo-i18n'
+
 == Usage with Rails 3
 
   connection = Mongo::Connection.new['my_app_related_db'].collection('i18n')
