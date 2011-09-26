@@ -27,7 +27,11 @@ module MongoI18n
       end
       keys
     end
-    
+
+    def del(key)
+      collection.remove({:_id => key})
+    end
+
     # Thankfully borrowed from Jodosha's redis-store
     # https://github.com/jodosha/redis-store/blob/master/lib/i18n/backend/redis.rb
     def available_locales
