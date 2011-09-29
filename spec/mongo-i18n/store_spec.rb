@@ -30,6 +30,11 @@ describe MongoI18n::Store do
       store['foo'].should == 'bar'
     end
 
+    it "should remove foo" do
+      store.del("foo")
+      store.keys.include?('foo').should be_false
+    end
+
     it "should always set key as string" do
       store[:baz] = 'wick'
       doc = collection.find_one(:_id => 'baz')

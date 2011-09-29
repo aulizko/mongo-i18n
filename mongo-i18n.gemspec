@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.files        = Dir.glob("{lib,spec}/**/*") + %w[LICENSE Rakefile README.rdoc]
   s.description  = 'MongoDB backend implementation for I18n gem.'
 
-  s.add_dependency              'mongo',          '~> 1.1.4'
+  s.add_dependency              'mongo'
+  s.add_dependency              'bson_ext'
   s.add_development_dependency  'rspec',          '~> 2.3.0'
 end
